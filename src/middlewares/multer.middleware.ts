@@ -10,7 +10,7 @@ export const handleMulterError = (
 ) => {
   if (err instanceof multer.MulterError) {
     if (err.code === 'LIMIT_UNEXPECTED_FILE') {
-      return res.status(400).json({ error: 'Only one avatar file is allowed.' });
+      return res.status(400).json({ error: 'Only one photo file is allowed.' });
     }
     return res.status(400).json({ error: err.message });
   } else if (err) {

@@ -22,7 +22,7 @@ export class FileService {
     return null;
   }
 
-  static async saveAvatar(file: Express.Multer.File): Promise<string> {
+  static async savePhoto(file: Express.Multer.File): Promise<string> {
     // Перевіряємо тип файлу
     const fileExtension = path.extname(file.originalname).toLowerCase();
 
@@ -36,28 +36,28 @@ export class FileService {
     try {
       // Завантаження файлу в Cloudinary
       // file.buffer доступний завдяки multer.memoryStorage()
-      const uploadResult = await cloudinaryService.uploadFile(file.buffer, 'avatars');
+      const uploadResult = await cloudinaryService.uploadFile(file.buffer, 'photos');
 
       // Повернення безпечного URL з Cloudinary
       // secure_url - це URL з HTTPS, який є кращим варіантом
       return uploadResult.secure_url;
     } catch (error: unknown) {
-      console.error('Failed to upload avatar to Cloudinary:', error);
-      throw new Error('Failed to save avatar file.');
+      console.error('Failed to upload photo to Cloudinary:', error);
+      throw new Error('Failed to save photo file.');
     }
   }
 
-  static async deleteAvatar(avatarUrl: string): Promise<void> {
+  static async deletePhoto(photoUrl: string): Promise<void> {
     try {
-      const publicId = FileService.getPublicIdFromUrl(avatarUrl);
+      const publicId = FileService.getPublicIdFromUrl(photoUrl);
       if (publicId) {
         await cloudinaryService.deleteFile(publicId);
       } else {
-        console.warn(`Could not extract publicId from URL: ${avatarUrl}`);
+        console.warn(`Could not extract publicId from URL: ${photoUrl}`);
       }
     } catch (error: unknown) {
-      console.error('Failed to delete avatar from Cloudinary:', error);
-      throw new Error('Failed to delete avatar file.');
+      console.error('Failed to delete photo from Cloudinary:', error);
+      throw new Error('Failed to delete photo file.');
     }
   }
 

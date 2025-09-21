@@ -12,7 +12,7 @@ const upload = multer({
 
 router.post(
   '/register',
-  upload.single('avatar'),
+  upload.single('photo'),
   handleMulterError,
   AuthController.validateRegister,
   AuthController.createUser,

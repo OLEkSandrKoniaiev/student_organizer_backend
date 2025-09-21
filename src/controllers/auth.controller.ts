@@ -31,13 +31,13 @@ export class AuthController {
         return res.status(409).json({ error: 'Email already in use.' }); //409 - Conflict
       }
 
-      let avatarPath: string | undefined = undefined;
+      let photoPath: string | undefined = undefined;
       if (req.file) {
         try {
-          avatarPath = await FileService.saveAvatar(req.file);
+          photoPath = await FileService.savePhoto(req.file);
         } catch (fileError) {
-          console.error('Error saving avatar file:', fileError);
-          return res.status(500).json({ error: 'Failed to save avatar image.' });
+          console.error('Error saving profile photo file:', fileError);
+          return res.status(500).json({ error: 'Failed to save profile photo image.' });
         }
       }
 
@@ -45,7 +45,7 @@ export class AuthController {
         username,
         email,
         password,
-        photo: avatarPath,
+        photo: photoPath,
       });
 
       const newUserId = newUser._id as string;
