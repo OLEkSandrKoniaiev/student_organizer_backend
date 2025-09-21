@@ -1,6 +1,7 @@
 import express from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
+import authRoutes from './routes/auth.routes';
 
 const app = express();
 
@@ -16,7 +17,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 // Шляхи
-// app.use('/', ...);
+app.use('/auth', authRoutes);
 
 // Базовий запит
 app.get('/', (_req, res) => {
