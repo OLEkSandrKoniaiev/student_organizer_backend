@@ -30,3 +30,19 @@ export const registerUserSchema = Joi.object({
     'any.required': 'Password is a required field.',
   }),
 });
+
+export const loginUserSchema = Joi.object({
+  email: Joi.string().email().pattern(emailRegex).required().messages({
+    'string.empty': 'Email cannot be empty.',
+    'string.email': 'Email must be a valid email address.',
+    'string.pattern.base': 'Email format is invalid.',
+    'any.required': 'Email is a required field.',
+  }),
+
+  password: Joi.string().pattern(passwordRegex).required().messages({
+    'string.empty': 'Password cannot be empty.',
+    'string.pattern.base':
+      'Password must be 8-64 characters long and include uppercase, lowercase, numbers, and symbols.',
+    'any.required': 'Password is a required field.',
+  }),
+});
