@@ -11,4 +11,9 @@ export class UserRepository {
     const user = await UserModel.findOne({ email });
     return user ? user.toJSON() : null;
   }
+
+  static async findById(userId: string): Promise<IUserResponseDTO | null> {
+    const user = await UserModel.findById(userId);
+    return user ? user.toJSON() : null;
+  }
 }
