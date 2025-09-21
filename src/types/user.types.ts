@@ -15,6 +15,11 @@ export interface ICreateUserDTO {
   photo?: string;
 }
 
+export interface ILoginUserDTO {
+  email: string;
+  password: string;
+}
+
 export type IUserResponseDTO = IUser & {
   _id: unknown;
 };

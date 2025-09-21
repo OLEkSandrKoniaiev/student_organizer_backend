@@ -17,5 +17,6 @@ router.post(
   AuthController.validateRegister,
   AuthController.createUser,
 );
+router.post('/login', AuthController.validateLogin, AuthController.loginUser);
 
 export default router;
