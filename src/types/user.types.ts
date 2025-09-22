@@ -20,6 +20,20 @@ export interface ILoginUserDTO {
   password: string;
 }
 
+export interface IShowUserDTO {
+  _id: string;
+  username: string;
+  email: string;
+  photo?: string | null;
+}
+
+export interface IUpdateUserDTO {
+  _id: string;
+  username: string;
+  photo?: string;
+}
+
+// Коли є необхідність у роботі з mongoose повертати справжній об'єкт
 export type IUserResponseDTO = IUser & {
   _id: unknown;
 };

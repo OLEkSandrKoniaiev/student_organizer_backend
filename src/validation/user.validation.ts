@@ -46,3 +46,12 @@ export const loginUserSchema = Joi.object({
     'any.required': 'Password is a required field.',
   }),
 });
+
+export const updateUserSchema = Joi.object({
+  username: Joi.string().min(2).max(255).required().messages({
+    'string.empty': 'Username cannot be empty.',
+    'string.min': 'Username should have a minimum length of {#limit}.',
+    'string.max': 'Username should have a maximum length of {#limit}.',
+    'any.required': 'Username is a required field.',
+  }),
+});
